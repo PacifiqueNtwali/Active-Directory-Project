@@ -79,52 +79,6 @@ Create a small on-premises lab that demonstrates AD + endpoint telemetry ingesti
          gateway4: 192.168.10.1
          nameservers:
            addresses: [8.8.8.8]
-   Part 3 — Network & Splunk + UF + Sysmon setup (continued)
-
-Then sudo netplan apply and verified with ip a.
-
-Installed Splunk Enterprise (.deb) on Ubuntu
-sudo dpkg -i splunk-<version>.deb
-
-cd /opt/splunk/bin && sudo ./splunk start
-
-
-Created admin user when prompted.
-
-Enabled boot-start:
-
-sudo ./splunk enable boot-start -user splunk
-
-Prepared Splunk Universal Forwarder (UF) on Windows
-
-Downloaded UF installer and installed on the Windows hosts.
-
-Created a local inputs.conf (placed in C:\Program Files\SplunkUniversalForwarder\etc\system\local\) to collect Application, System, Security and Sysmon logs and set index = endpoint.
-
-Ensured the Splunk UF service runs under Local System (if permission issues occurred).
-
-Installed Sysmon and applied a vetted configuration (e.g., Olaf/other) on both Windows hosts to capture high-fidelity telemetry.
-
-In Splunk Web (post-install)
-
-Created index endpoint.
-
-Enabled receiving on port 9997.
-
-Validated: searched index=endpoint in Splunk Search & Reporting and confirmed events and host names appeared.
-
-Troubleshooting & notes
-
-Splunk web initially unreachable from the Windows host (attempted http://192.168.10.10:8000).
-
-Root cause: firewall rules. Resolved by adding inbound/outbound rules in Windows Defender for port 8000 and updating ufw on Ubuntu to allow traffic from the Windows VM.
-
-Splunk UF service sometimes lacked privileges to read Windows event logs. Fixed by switching the service account to Local System.
-
-Crowbar in the guided walkthrough did not function in my environment; used Hydra for a demo instead.
-
-After configuring inputs.conf, the Splunk UF service must be restarted for changes to take effect.
-
 Next (to be documented later)
 
 Promote Windows Server to Domain Controller, create domain users, and join Windows 10 to the domain.
