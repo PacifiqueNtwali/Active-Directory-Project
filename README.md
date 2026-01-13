@@ -9,7 +9,7 @@ This project demonstrates my ability to:
 - Ingest and analyze endpoint and directory telemetry
 - Troubleshoot real infrastructure and logging failures
 
-> Inspired by MyDFIR’s AD detection series. I extended the lab through independent troubleshooting, attack tool pivoting, and additional detection validation beyond the guide.
+Inspired by MyDFIR’s AD detection series. I extended the lab through independent troubleshooting, attack tool pivoting, and additional detection validation beyond the guide.
 
 ---
 
