@@ -54,14 +54,22 @@ This project demonstrates my ability to:
 
  ![Attack Simulated](https://imgur.com/a/yxzXGfl.png)
 
+## Shows Kali ip
+
+![kali ip](https://imgur.com/a/thom19t.png)
+
+
+![Kali user attacks](https://imgur.com/a/Wcq83Kl.png)
+
 ---
 
 ### 2️⃣ Successful Authentication After Brute Force
 - Confirmed successful login after failures
 - Verified attacker source IP (Kali Linux)
 
-📍 Screenshot:  
-`screenshots/02-detections/4624-success-attacker-ip.png`
+![success]([https://imgur.com/a/thom19t.png)
+
+![kali ip](https://imgur.com/a/thom19t.png)
 
 ---
 
