@@ -59,19 +59,17 @@ This project demonstrates my ability to:
 [![kali ip](https://imgur.com/a/thom19t.png)
 ](https://i.imgur.com/CYJxu6R.png)
 
-<img width="537" height="281" alt="image" src="https://github.com/user-attachments/assets/3ceb2dbe-5125-4c82-9b59-0959ae64c561" />
-
 ---
 
 ### 2️⃣ Successful Authentication After Brute Force
 - Confirmed successful login after failures
 - Verified attacker source IP (Kali Linux)
 
-![Successful Authentication After Brute Force](https://i.imgur.com/X7pL9Qe.png)
+[![Successful Authentication After Brute Force](https://i.imgur.com/X7pL9Qe.png)](https://i.imgur.com/phsqFYN.png)
 
 
 
-![kali ip](https://imgur.com/a/thom19t.png)
+[![kali ip](https://imgur.com/a/thom19t.png)](https://i.imgur.com/CYJxu6R.png)
 
 ---
 
