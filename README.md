@@ -15,9 +15,8 @@ This project demonstrates my ability to:
 
 ## Architecture
 
-### Logical Diagram
+![Logical Diagram](https://i.imgur.com/5klzKDq.png)
 
-https://imgur.com/5klzKDq
 
 **Environment Flow**
 - Windows Server 2022 → Domain Controller (AD DS, DNS)
