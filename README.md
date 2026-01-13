@@ -122,21 +122,6 @@ Splunk queries used for detection are stored in `/queries`.
 
 ---
 
-## Troubleshooting & Fixes
-
-### ❌ Splunk Web Not Accessible (Port 8000)
-**Problem**
-- Windows endpoint could not access Splunk UI
-
-**Fix**
-- Opened TCP 8000 inbound/outbound in Windows Defender Firewall
-- Allowed port 8000 via UFW on Ubuntu
-
-📍 Screenshot:  
-`screenshots/03-troubleshooting/splunk-8000-fixed.png`
-
----
-
 ### ❌ Crowbar Attack Tool Failed
 **Problem**
 - Crowbar did not function reliably in my environment
@@ -144,8 +129,7 @@ Splunk queries used for detection are stored in `/queries`.
 **Fix**
 - Pivoted to Hydra and successfully generated authentication telemetry
 
-📍 Screenshot:  
-`screenshots/03-troubleshooting/hydra-success.png`
+![Successful login](https://i.imgur.com/phsqFYN.png)
 
 ---
 
