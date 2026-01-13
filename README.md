@@ -95,18 +95,6 @@ Inspired by MyDFIR’s AD detection series. I extended the lab through independe
 
 ![](https://i.imgur.com/525S4tt.png)
 
-
-
-
----
-
-### 4️⃣ Atomic Red Team Simulation
-- Executed Atomic test for local account creation
-- Confirmed creation and deletion events in Splunk
-
-📍 Screenshot:  
-`screenshots/02-detections/art-newlocaluser.png`
-
 ---
 
 ## Telemetry Validation
