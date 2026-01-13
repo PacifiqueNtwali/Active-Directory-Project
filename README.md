@@ -52,7 +52,9 @@ This project demonstrates my ability to:
 - Multiple failed logon attempts against a domain user  
 - Clustered authentication failures observed in logs  
 
-![RDP Brute Force Attack](https://i.imgur.com/CYJxu6R.png)
+![RDP Brute Force Attack](https://i.imgur.com/QtXzNXy.png)
+
+![RDP Brute Force Attack](https://i.imgur.com/FdA2CDT.png)
 
 ---
 
