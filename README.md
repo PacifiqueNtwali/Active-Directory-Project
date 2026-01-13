@@ -66,9 +66,13 @@ This project demonstrates my ability to:
 
 ### 2️⃣ Successful Authentication After Brute Force
 - Successful login detected after multiple failures  
-- Attacker IP matches Kali Linux machine  
+- Attacker IP matches Kali Linux machine
 
-![Successful Authentication After Brute Force](https://i.imgur.com/X7pL9Qe.png)
+![Successful login](https://i.imgur.com/phsqFYN.png)
+
+![Kali IP](https://i.imgur.com/CYJxu6R.png)
+
+
 ---
 
 ### 3️⃣ Active Directory User Attribute Changes
