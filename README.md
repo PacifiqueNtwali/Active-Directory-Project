@@ -1,88 +1,149 @@
-# Active-Directory-Project — Partial Lab Documentation
+# Active Directory Attack Detection Lab (Splunk + Sysmon)
 
-> **Status:** Work in progress — documenting completed work only (I'll finish the rest later).    
-> **Credit:** Adapted from MyDfir (YouTube)
+## Overview
+I designed and deployed a small on-prem style Active Directory environment to simulate common attack scenarios and validate security telemetry using Splunk.
 
----
+This project demonstrates my ability to:
+- Build and configure a Windows domain
+- Generate realistic attack activity
+- Ingest and analyze endpoint and directory telemetry
+- Troubleshoot real infrastructure and logging failures
 
-### Summary (what I completed)
-I built the initial sections of an on-prem AD lab and documented the steps I performed through network/design, VM deployment, and initial telemetry collection setup. This README covers only the parts I completed:
-
-- Part 1 — Logical diagram  
-- Part 2 — VM installation & base OS setup (VirtualBox)  
-- Part 3 — Network config, Splunk install on Ubuntu, Splunk UF and Sysmon prep on Windows hosts  
-
-I will document the remaining steps (AD promotion, domain join, attack telemetry generation, detections) later.
+> Inspired by MyDFIR’s AD detection series. I extended the lab through independent troubleshooting, attack tool pivoting, and additional detection validation beyond the guide.
 
 ---
 
-### Objective (short)
-Create a small on-premises lab that demonstrates AD + endpoint telemetry ingestion into Splunk so I can later exercise detection scenarios.
+## Architecture
+
+### Logical Diagram
+
+https://imgur.com/5klzKDq
+
+**Environment Flow**
+- Windows Server 2022 → Domain Controller (AD DS, DNS)
+- Windows 10 → Domain-joined endpoint
+- Ubuntu Server → Splunk Enterprise (SIEM)
+- Kali Linux → Attacker
+- Logs shipped via Splunk Universal Forwarder + Sysmon
 
 ---
 
-### What I learned / demonstrated
-- Creating a clear logical diagram for the lab  
-- Deploying and configuring VMs in VirtualBox (Windows Server 2022, Windows 10, Ubuntu Server 22.04, Kali)  
-- Creating a NAT network and assigning static IPs  
-- Installing Splunk Enterprise on Ubuntu and enabling it at boot  
-- Installing Splunk Universal Forwarder (UF) on Windows and preparing `inputs.conf`  
-- Installing Sysmon (with community config) on Windows hosts  
-- Troubleshooting connectivity issues (Windows Defender firewall, `ufw` on Ubuntu)  
-- Using Hydra as an alternative to Crowbar for demonstrations  
+## Environment Details
+
+### Systems
+- Windows Server 2022 (Domain Controller)
+- Windows 10 (Domain endpoint)
+- Ubuntu Server 22.04 (Splunk)
+- Kali Linux (Attacker)
+
+### Tools
+- Splunk Enterprise
+- Splunk Universal Forwarder
+- Sysmon
+- Atomic Red Team
+- Hydra
 
 ---
 
-### Lab components (as deployed)
-- VirtualBox NAT network: `192.168.10.0/24`  
-- Splunk (Ubuntu Server 22.04): `192.168.10.10` — Splunk Web `:8000`, receive UF `:9997`  
-- Windows Server 2022 (AD placeholder VM)  
-- Windows 10 (target endpoint)  
-- Kali Linux (attacker)  
-- Sysmon + Splunk UF installed on Windows Server and Windows 10  
+## Attack Scenarios Simulated
+
+### 1️⃣ RDP Brute Force Attack
+- Multiple failed logons against a domain user
+- Generated clustered authentication failures
+
+📍 Screenshot:  
+`screenshots/02-detections/4625-bruteforce-burst.png`
 
 ---
 
-### Files / assets included
-- draw.io logical diagram (referenced in project notes)  
-- screenshots taken during installation and troubleshooting  
-- local `inputs.conf` snippets used on Windows UF (referenced below)  
+### 2️⃣ Successful Authentication After Brute Force
+- Confirmed successful login after failures
+- Verified attacker source IP (Kali Linux)
+
+📍 Screenshot:  
+`screenshots/02-detections/4624-success-attacker-ip.png`
 
 ---
 
-### Quick steps I executed
+### 3️⃣ Active Directory User Attribute Changes
+- Modified password policies on a domain user
+- Observed inconsistent but valid Event ID 4738 telemetry
 
-#### Part 1 — Logical diagram
-- Created a draw.io diagram showing Splunk, AD/DC, Windows 10 target, Kali attacker, switch, router, and cloud.  
-- Marked attacker host red; used dotted green arrows to indicate logs/forwarding to Splunk.  
-- Annotated icons with roles and IP addresses to reference during setup.  
+📍 Screenshot:  
+`screenshots/02-detections/4738-user-changed.png`
 
-#### Part 2 — VM setup (VirtualBox)
-- Deployed VMs:  
-  - Windows Server 2022 (intended AD/DC)  
-  - Windows 10 (target)  
-  - Ubuntu Server 22.04 (Splunk indexer)  
-  - Kali Linux (attacker)  
-- Allocated extra CPU/RAM/disk for Splunk VM because it will index/search.  
-- Took snapshots after base OS installs.  
+---
 
-#### Part 3 — Network & Splunk + UF + Sysmon setup
-1. Created VirtualBox NAT network `192.168.10.0/24` and attached all VMs to it.  
-2. Set Splunk VM static IP on Ubuntu using `netplan`. Example used:  
-   ```yaml
-   network:
-     version: 2
-     ethernets:
-       enp0s3:
-         dhcp4: no
-         addresses: [192.168.10.10/24]
-         gateway4: 192.168.10.1
-         nameservers:
-           addresses: [8.8.8.8]
-Next (to be documented later)
+### 4️⃣ Atomic Red Team Simulation
+- Executed Atomic test for local account creation
+- Confirmed creation and deletion events in Splunk
 
-Promote Windows Server to Domain Controller, create domain users, and join Windows 10 to the domain.
+📍 Screenshot:  
+`screenshots/02-detections/art-newlocaluser.png`
 
-Run Atomic Red Team / PowerShell / Kali techniques to generate telemetry and validate detections.
+---
 
-Create Splunk searches/dashboards for the telemetry.
+## Telemetry Validation
+
+| Event ID | Meaning |
+|--------|--------|
+| 4625 | Failed logon (brute force indicator) |
+| 4624 | Successful logon |
+| 4738 | AD user account modified |
+| 4720 / 4726 | Account created / deleted |
+
+Splunk queries used for detection are stored in `/queries`.
+
+---
+
+## Troubleshooting & Fixes
+
+### ❌ Splunk Web Not Accessible (Port 8000)
+**Problem**
+- Windows endpoint could not access Splunk UI
+
+**Fix**
+- Opened TCP 8000 inbound/outbound in Windows Defender Firewall
+- Allowed port 8000 via UFW on Ubuntu
+
+📍 Screenshot:  
+`screenshots/03-troubleshooting/splunk-8000-fixed.png`
+
+---
+
+### ❌ Crowbar Attack Tool Failed
+**Problem**
+- Crowbar did not function reliably in my environment
+
+**Fix**
+- Pivoted to Hydra and successfully generated authentication telemetry
+
+📍 Screenshot:  
+`screenshots/03-troubleshooting/hydra-success.png`
+
+---
+
+## Key Skills Demonstrated
+- Active Directory administration
+- Windows authentication internals
+- SIEM ingestion and querying
+- Security event analysis
+- Network and firewall troubleshooting
+- Attack simulation & detection mapping
+
+---
+
+## Reproduction (High-Level)
+1. Build 4 VMs on the same NAT network
+2. Assign static IPs and verify routing
+3. Install Splunk Enterprise and enable receiving on port 9997
+4. Install Sysmon + Universal Forwarder on Windows hosts
+5. Promote Windows Server to Domain Controller
+6. Join Windows 10 to the domain
+7. Execute attacks and validate telemetry in Splunk
+
+---
+
+## Screenshots Folder Structure
+All screenshots are intentionally organized:
+
