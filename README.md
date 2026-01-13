@@ -49,28 +49,26 @@ This project demonstrates my ability to:
 ## Attack Scenarios Simulated
 
 ### 1️⃣ RDP Brute Force Attack
-- Multiple failed logons against a domain user
-- Generated clustered authentication failures
+- Multiple failed logon attempts against a domain user  
+- Clustered authentication failures observed in logs  
 
- ![Attack Simulated](https://imgur.com/a/yxzXGfl.png)
+![RDP Brute Force Attack](https://i.imgur.com/CYJxu6R.png)
 
-## Shows Kali ip
+---
 
-[![kali ip](https://imgur.com/a/thom19t.png)
-](https://i.imgur.com/CYJxu6R.png)
+### Kali Linux Attacker IP
+- Source IP identified from authentication events  
+- Confirms attack origin from Kali Linux machine  
+
+![Kali IP](https://i.imgur.com/CYJxu6R.png)
 
 ---
 
 ### 2️⃣ Successful Authentication After Brute Force
-- Confirmed successful login after failures
-- Verified attacker source IP (Kali Linux)
+- Successful login detected after multiple failures  
+- Attacker IP matches Kali Linux machine  
 
-[![Successful Authentication After Brute Force](https://i.imgur.com/X7pL9Qe.png)](https://i.imgur.com/phsqFYN.png)
-
-
-
-[![kali ip](https://imgur.com/a/thom19t.png)](https://i.imgur.com/CYJxu6R.png)
-
+![Successful Authentication After Brute Force](https://i.imgur.com/X7pL9Qe.png)
 ---
 
 ### 3️⃣ Active Directory User Attribute Changes
