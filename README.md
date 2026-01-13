@@ -77,12 +77,25 @@ This project demonstrates my ability to:
 
 ---
 
-### 3️⃣ Active Directory User Attribute Changes
-- Modified password policies on a domain user
-- Observed inconsistent but valid Event ID 4738 telemetry
+### 3️⃣ Active Directory Part
 
-📍 Screenshot:  
-`screenshots/02-detections/4738-user-changed.png`
+![](https://i.imgur.com/aTSGZaP.png)
+
+![](https://i.imgur.com/JMUBcGS.png)
+
+![](https://i.imgur.com/6uVbjnT.png)
+
+![](https://i.imgur.com/bnPxy8u.png)
+
+![](https://i.imgur.com/iDEkNtS.png)
+
+![](https://i.imgur.com/FYVy6yz.png)
+
+![](https://i.imgur.com/4a0xUmx.png)
+
+
+
+
 
 ---
 
