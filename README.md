@@ -35,6 +35,8 @@ This project demonstrates my ability to:
 - Ubuntu Server 22.04 (Splunk)
 - Kali Linux (Attacker)
 
+  ![Systems]([https://i.imgur.com/5klzKDq.png](https://imgur.com/y3yMz15))
+
 ### Tools
 - Splunk Enterprise
 - Splunk Universal Forwarder
@@ -50,8 +52,7 @@ This project demonstrates my ability to:
 - Multiple failed logons against a domain user
 - Generated clustered authentication failures
 
-📍 Screenshot:  
-`screenshots/02-detections/4625-bruteforce-burst.png`
+ ![Systems]([[https://i.imgur.com/5klzKDq.png](https://imgur.com/y3yMz15)](https://imgur.com/8EZhv6V)) 
 
 ---
 
