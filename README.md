@@ -67,7 +67,7 @@ This project demonstrates my ability to:
 - Confirmed successful login after failures
 - Verified attacker source IP (Kali Linux)
 
-![success]([https://imgur.com/a/thom19t.png)
+[![success]([https://imgur.com/a/thom19t.png)](https://imgur.com/phsqFYN)
 
 ![kali ip](https://imgur.com/a/thom19t.png)
 
