@@ -35,7 +35,7 @@ This project demonstrates my ability to:
 - Ubuntu Server 22.04 (Splunk)
 - Kali Linux (Attacker)
 
-  ![Systems](https://imgur.com/y3yMz15)
+  ![Systems](https://imgur.com/y3yMz15.png)
 
 ### Tools
 - Splunk Enterprise
@@ -52,7 +52,7 @@ This project demonstrates my ability to:
 - Multiple failed logons against a domain user
 - Generated clustered authentication failures
 
- ![Attack Simulated](https://imgur.com/8EZhv6V)
+ ![Attack Simulated](https://imgur.com/a/yxzXGfl.png)
 
 ---
 
