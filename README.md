@@ -142,6 +142,4 @@ Splunk queries used for detection are stored in `/queries`.
 
 ---
 
-## Screenshots Folder Structure
-All screenshots are intentionally organized:
 
